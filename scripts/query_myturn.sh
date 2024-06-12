@@ -3,10 +3,10 @@
 source .env.development
 
 # Set the initial date
-start_date=$(date --date "$range_start_date" '+%Y-%m-%d')
+start_date=$(date --date "$GATSBY_RANGE_START_DATE" '+%Y-%m-%d')
 end_date=$(date --date "$start_date +$GATSBY_STEP_SIZE_IN_DAYS days" '+%Y-%m-%d')
 
-while [[ $(date --date "$end_date +$GATSBY_STEP_SIZE_IN_DAYS days" '+%s') -le $(date --date "$range_end_date" '+%s') ]]
+while [[ $(date --date "$end_date +$GATSBY_STEP_SIZE_IN_DAYS days" '+%s') -le $(date --date "$GATSBY_RANGE_END_DATE" '+%s') ]]
 do
     echo "Starting, getting: $start_date"
 
@@ -37,7 +37,7 @@ do
         --data-urlencode 'to=struct' \
         --data-urlencode 'to_tz=Europe/London' \
         --data-urlencode 'to_time=23:59' \
-        --data-urlencode "aggregateAttribute=$aggregate_attribute" \
+        --data-urlencode "aggregateAttribute=$AGGREGATE_ATTRIBUTE" \
         --data-urlencode 'location.id=2806' \
         --data-urlencode 'format=csv' \
         --data-urlencode 'extension=csv' \
