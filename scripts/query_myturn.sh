@@ -41,6 +41,7 @@ do
         --data-urlencode 'location.id=2806' \
         --data-urlencode 'format=csv' \
         --data-urlencode 'extension=csv' \
+        --compressed \
         --output "data/$start_date-to-$end_date.csv"
 
 
