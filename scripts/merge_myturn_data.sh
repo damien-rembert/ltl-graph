@@ -1,14 +1,24 @@
 #!/bin/bash
 
-MASTER_FILE="data/collection.csv"
+MASTER_FILE_SUFFIX="_collection.csv"
 
-echo '"Value","Count","Amount","Filename"' > "$MASTER_FILE"
+# Loop over each directory
+for dir in data/*; do
 
-for file in data/*.csv; do
-    # Skip the master file itself
-    if [ "$file" != "$MASTER_FILE" ]; then
-        # Drop the header and add a column with the filename to each row and append to the master file
-        awk -v filename="$file" '{if (NR!=1) {print $0 "," filename}}' "$file" >> "$MASTER_FILE"
+    # Check if the directory contains files
+    if [ -d $dir ]; then
+
+        echo '"Value","Count","Amount","Filename"' > "${dir}${MASTER_FILE_SUFFIX}"
+
+        # Loop over each file in the directory
+        for file in $dir/*.csv; do
+            # Check if it's a regular file
+            if [ -f "$file" ] ; then
+
+                # Drop the header and add a column with the filename to each row and append to the master file
+                awk -v filename="$file" '{if (NR!=1) {print $0 "," filename}}' "$file" >> "${dir}${MASTER_FILE_SUFFIX}"
+
+            fi
+        done
     fi
 done
-

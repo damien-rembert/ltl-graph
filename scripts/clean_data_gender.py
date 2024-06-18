@@ -58,8 +58,7 @@ def clean_data(df):
     df = df.groupby(['start_date_time']).agg(StartDate_first=('Start Date', 'first'), EndDate_first=('End Date', 'first'), male_sum=('male', 'sum'), female_sum=('female', 'sum'), none_sum=('none', 'sum'), would_rather_not_say_sum=('would_rather_not_say', 'sum'), Count_sum=('Count', 'sum')).reset_index()
     return df
 
-# Loaded variable 'df' from URI: /home/damien/projects/ltl-usage-graph/data/collection.csv
-df = pd.read_csv(r'/home/damien/projects/ltl-usage-graph/data/collection.csv', engine='pyarrow')
+df = pd.read_csv(r'data/sex_collection.csv', engine='pyarrow')
 
 df_clean = clean_data(df.copy())
 df_clean.to_csv(r'src/data/gender.csv', index=False)
