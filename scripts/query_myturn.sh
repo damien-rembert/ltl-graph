@@ -46,6 +46,7 @@ do
             --compressed \
             --output "data/${AGGREGATE_ATTRIBUTE}/${start_date}_to_${end_date}.csv"
 
+        sleep 5
     else
         echo "data/${AGGREGATE_ATTRIBUTE}/${start_date}_to_${end_date}.csv already exists."
     fi
@@ -54,6 +55,5 @@ do
     start_date=$(date --date "$end_date +1 day" '+%Y-%m-%d')
     end_date=$(date --date "$start_date +$GATSBY_STEP_SIZE_IN_DAYS days" '+%Y-%m-%d')
 
-    sleep 3
 done
     echo "Done."

@@ -12,6 +12,7 @@
     "merge-data": "bash scripts/merge_myturn_data.sh",
     "clean-data": "python3 scripts/clean_data.py",
     "clean-data-gender": "python3 scripts/clean_data_gender.py",
+    "clean-data-first-use": "python3 scripts/clean_data_users.py",
     "remove-data": "rm -f data/*.csv; rm -f data/*.json; rm -f data/*.gz",
     "develop": "gatsby develop",
     "start": "gatsby develop",
