@@ -3,6 +3,9 @@
 source .env.development
 
 USER_ID=$1
+TODAY=$(date '+%Y-%m-%d')
+
+# TODO: check if file already exists
 
 curl --location "https://$API_URL/library/orgLoan/exportLoans" \
     --header "Host: $API_URL" \
@@ -53,6 +56,7 @@ curl --location "https://$API_URL/library/orgLoan/exportLoans" \
     --data-urlencode 'includeProjectData=false' \
     --data-urlencode 'format=csv' \
     --data-urlencode 'extension=csv' \
-    --output "data/users/$USER_ID.csv"
+    --output "data/users/$USER_ID-$TODAY.csv"
 
+# TODO: move sleep to the loop where the query is triggered
 sleep 3
